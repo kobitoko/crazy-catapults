@@ -43,6 +43,9 @@ public class GameControllerScript : MonoBehaviour {
         // Reset the game
         if (Input.GetButtonDown("Reset"))
         {
+            Time.timeScale = 1f;
+            // TODO: fix: Game freezes / doesn't restart properly, after someone won the game!
+            SceneManager.UnloadScene("level0");
             SceneManager.LoadScene("level0");
         }
 
