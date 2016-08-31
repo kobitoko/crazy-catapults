@@ -27,11 +27,7 @@ public class GameControllerScript : MonoBehaviour {
     void Start () {
         guiC = GameObject.Find("GUIhelper").transform;
         makeHpBars();
-        for(int i=0; i<4; ++i)
-        {
-            StartCoroutine(spawnP(i));
-        }
-        playerDied = 0;
+        resetPlayers();
         bgm = this.gameObject.AddComponent<AudioSource>();
         bgm.clip = music;
         bgm.loop = true;
@@ -44,11 +40,16 @@ public class GameControllerScript : MonoBehaviour {
         if (Input.GetButtonDown("Reset"))
         {
             Time.timeScale = 1f;
-            // TODO: fix: Game freezes / doesn't restart properly, after someone won the game!
-            SceneManager.UnloadScene("level0");
+            // TODO: fix: Game freezes /doesn't restart properly, after someone won the game!
             SceneManager.LoadScene("level0");
+            resetPlayers();
         }
 
+        // Exit the game
+        if (Input.GetButtonDown("Exit"))
+        {
+            Application.Quit();
+        }
 
         if(playerDied >= 3)
         {
@@ -125,5 +126,14 @@ public class GameControllerScript : MonoBehaviour {
     {
         textWinner.GetComponent<Text>().text = "Player " + (player+1) + " wins!\n\nPress 0 (zero) to restart the game.";
         Time.timeScale = 0f;
+    }
+
+    void resetPlayers()
+    {
+        for (int i = 0; i < 4; ++i)
+        {
+            StartCoroutine(spawnP(i));
+        }
+        playerDied = 0;
     }
 }

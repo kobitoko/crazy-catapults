@@ -32,7 +32,7 @@ P4: numpad 4 & 6 keys to move.
    Press numpad 1 to respawn.
 
 0 (zero key) to restart the game.
-Alt + F4 to exit the game.
+Esc or Alt+F4 to exit the game.
    
 Enjoy & thanks for playing!
 
